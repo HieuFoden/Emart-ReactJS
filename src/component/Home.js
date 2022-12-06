@@ -1,28 +1,37 @@
 import React from "react";
 // import Product from "./Product";
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../service/ApiService";
+import { fetchAllProducts } from "../service/ApiService";
 import './Home.scss';
+import ReactPaginate from 'react-paginate';
 
 const Home = () => {
-
     const [listProduct, setListProduct] = useState([]);
     const [filter, setFilter] = useState(listProduct);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentLimit, setCurrentLimit] = useState(8);
+    const [totalPage, setTotalPage] = useState(0);
 
+    //LIST PRODUCT
     useEffect(() => {
         fetchListProducts();
-    }, []);
+    }, [currentPage]);
 
     const fetchListProducts = async () => {
-        let response = await getAllProducts();
+        let response = await fetchAllProducts(currentPage, currentLimit);  //currentPage, currentLimit
         // console.log('>>>res: ', response)
         if (response.EC === 0) {
-            setListProduct(response.DT);
-            setFilter(response.DT);
+            // setListProduct(response.DT);
+            // setFilter(response.DT);
+
+            setTotalPage(response.DT.totalPage);
+            setListProduct(response.DT.products);
+            setFilter(response.DT.products);
 
         }
     };
 
+    //CATEGORY
     const filterResult = (catItem) => {
 
         const result = listProduct.filter((item) => {
@@ -36,6 +45,14 @@ const Home = () => {
     //SEARCH
     const [query, setQuery] = useState('');
     // console.log('?>>check query : ', query);
+
+    //PAGINATE
+    const handlePageClick = async (event) => {
+        // console.log('>>>check data click :', event);
+        setCurrentPage(+event.selected + 1);
+        // alert(event.selected);
+
+    };
 
     return (
         <>
@@ -126,19 +143,34 @@ const Home = () => {
                             }
                         </div>
 
-                        <div className="user-footer">
-                            <nav aria-label="Page navigation example">
-                                <ul className="pagination">
-                                    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                        {totalPage > 0 &&
+                            <div className="user-footer ">
+                                <ReactPaginate
+                                    nextLabel="next >"
+                                    onPageChange={handlePageClick}
+                                    pageRangeDisplayed={2}
+                                    marginPagesDisplayed={3}
+                                    pageCount={totalPage}
+                                    previousLabel="< previous"
+                                    pageClassName="page-item"
+                                    pageLinkClassName="page-link"
+                                    previousClassName="page-item"
+                                    previousLinkClassName="page-link"
+                                    nextClassName="page-item"
+                                    nextLinkClassName="page-link"
+                                    breakLabel="..."
+                                    breakClassName="page-item"
+                                    breakLinkClassName="page-link"
+                                    containerClassName="pagination"
+                                    activeClassName="active"
+                                    renderOnZeroPageCount={null}
+                                />
+                            </div>
+                        }
                     </div>
+
                 </div>
+
             </div>
         </>
     );
