@@ -70,7 +70,7 @@ const Home = () => {
                             return (
                                 <>
                                     <div className="col-md-3 mb-4">
-                                        <div className="card h-100 text-center p-4" key={item.id}>
+                                        <div className="card h-100 text-center p-4" key={item.productId}>
                                             <img src={item.image} className="card-img-top" alt={item.title} height="250px" />
                                             <div className="card-body">
                                                 <h5 className="card-title mb-0">{item.title.substring(0, 9)}...</h5>
@@ -92,4 +92,3 @@ const Home = () => {
 
 export default Home;
 
-//vjcxvbjcx
