@@ -5,4 +5,16 @@ const fetchAllProducts = (page, limit) => {
     return axios.get(`api/v1/product/read?page=${page}&limit=${limit}`); //template string js
 };
 
-export { fetchAllProducts };
+const registerNewUser = (email, phone, username, password) => {
+    return axios.post('http://localhost:8080/api/v1/register', {
+        email, phone, username, password
+    });
+};
+
+const loginUser = (valueLogin, password) => {
+    return axios.post('api/v1/login', {
+        valueLogin, password
+    });
+};
+
+export { fetchAllProducts, registerNewUser, loginUser };

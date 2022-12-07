@@ -1,16 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import { Provider } from 'react-redux';
+// import store from './redux/store';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+import _ from 'lodash';
+import Login from './component/Login/Login';
+import Register from './component/Register/Register';
+import Home from './component/Home/Home';
+import Cart from './component/Cart/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  //  <Provider>
+  <>
+    <React.StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path='' element={<App />} >
+            <Route index element={<Home />} />
+            {/* <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} /> */}
+            <Route path='cart' element={<Cart />} />
+          </Route>
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+
+        </Routes>
+
+      </BrowserRouter>
+
+    </React.StrictMode>
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
+    {/* </Provider> */}
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

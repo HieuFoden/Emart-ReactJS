@@ -1,7 +1,7 @@
 import React from "react";
 // import Product from "./Product";
 import { useEffect, useState } from "react";
-import { fetchAllProducts } from "../service/ApiService";
+import { fetchAllProducts } from "../../service/ApiService";
 import './Home.scss';
 import ReactPaginate from 'react-paginate';
 
@@ -56,7 +56,7 @@ const Home = () => {
 
     return (
         <>
-
+            {/* 
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
                     <div className="container">
@@ -88,7 +88,7 @@ const Home = () => {
                         </div>
                     </div>
                 </nav>
-            </div>
+            </div> */}
 
 
 
