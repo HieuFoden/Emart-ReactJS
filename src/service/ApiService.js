@@ -17,4 +17,9 @@ const loginUser = (valueLogin, password) => {
     });
 };
 
-export { fetchAllProducts, registerNewUser, loginUser };
+const fetchDetailProduct = (id) => {
+    return axios.get(`api/v1/product/read/${id}`);
+
+};
+
+export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct };

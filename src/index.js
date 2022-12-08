@@ -15,6 +15,7 @@ import Login from './component/Login/Login';
 import Register from './component/Register/Register';
 import Home from './component/Home/Home';
 import Cart from './component/Cart/Cart';
+import Product from './component/Product/Product';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,12 +26,11 @@ root.render(
         <Routes>
           <Route path='' element={<App />} >
             <Route index element={<Home />} />
-            {/* <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} /> */}
-            <Route path='cart' element={<Cart />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/product/:id' element={<Product />} />
           </Route>
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
 
         </Routes>
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchAllProducts } from "../../service/ApiService";
 import './Home.scss';
 import ReactPaginate from 'react-paginate';
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
     const [listProduct, setListProduct] = useState([]);
@@ -56,41 +57,6 @@ const Home = () => {
 
     return (
         <>
-            {/* 
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
-                    <div className="container">
-                        <a className="navbar-brand fw-bold fs-4" href="#">
-                            AKI SHOP
-                        </a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
-                            <input type='text'
-                                placeholder="検索"
-                                className="search mx-auto mb-2 mb-lg-0 "
-                                onChange={(event) => setQuery(event.target.value)}
-                            />
-
-                            <div className="buttons">
-                                <a href="" className="btn btn-outline-dark">
-                                    <i className="fa fa-sign-in me-1"> ログイン</i>
-                                </a>
-                                <a href="" className="btn btn-outline-dark ms-2">
-                                    <i className="fa fa-user-plus"> 登録</i>
-                                </a>
-                                <a href="" className="btn btn-outline-dark ms-2">
-                                    <i className="fa fa-shopping-cart"> カート(0)</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div> */}
-
-
 
             <div className="hero">
                 <div className="card bg-dark text-white border-0">
@@ -123,7 +89,7 @@ const Home = () => {
                             </div>
 
 
-                            {filter.filter(item => item.title.toLowerCase().includes(query)).map((item, index) => {
+                            {filter.map((item, index) => {
 
                                 return (
                                     <>
@@ -133,7 +99,7 @@ const Home = () => {
                                                 <div className="card-body">
                                                     <h5 className="card-title mb-0">{item.title.substring(0, 9)}...</h5>
                                                     <p className="card-text lead fw-bold">¥ {item.price}</p>
-                                                    <a href="#" className="btn btn-outline-dark">購入</a>
+                                                    <NavLink to={`/product/${item.id}`} className="btn btn-outline-dark">詳細見る</NavLink>
                                                 </div>
                                             </div>
                                         </div>
