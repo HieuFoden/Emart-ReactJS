@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Navbar from './component/Navbar/Navbar';
 import { Outlet } from "react-router-dom"; // Outlet : nested route. La phan component se thay doi
 

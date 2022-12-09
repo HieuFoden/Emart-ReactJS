@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import './Navbar.scss';
+
 
 const Navbar = () => {
     return (
@@ -15,11 +17,30 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <input type='text'
+                        {/* <input type='text'
                             placeholder="検索"
                             className="search mx-auto mb-2 mb-lg-0 "
                         // onChange={(event) => setQuery(event.target.value)}
-                        />
+                        /> */}
+
+                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" aria-current="page" to="/">
+                                    ホームページ
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/users">
+                                    ユーザー管理
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/about">
+                                    AKIについて
+                                </NavLink>
+                            </li>
+                        </ul>
+
 
                         <div className="buttons">
                             <NavLink to="/login" className="btn btn-outline-dark">

@@ -34,40 +34,40 @@ const Register = (props) => {
         setObjCheckInput(defaultValidInput);
 
         if (!email) {
-            toast.error('メールが必須。');
+            toast.error('メールが必須');
             setObjCheckInput({ ...defaultValidInput, isValidEmail: false });
             return false;
         };
         let regx = /\S+@\S+\.\S+/; //js regular expression check email
 
         if (!regx.test(email)) {
-            toast.error('メールアドレスの形式が正しくありません。');
+            toast.error('メールアドレスの形式が正しくありません');
             setObjCheckInput({ ...defaultValidInput, isValidEmail: false });
             return false;
         }
 
         if (!phone) {
-            toast.error('電話番号が必須。');
+            toast.error('電話番号が必須');
             setObjCheckInput({ ...defaultValidInput, isValidPhone: false });
             return false;
         };
         if (!username) {
-            toast.error('ユーザー名が必須。');
+            toast.error('ユーザー名が必須');
             setObjCheckInput({ ...defaultValidInput, isValidUsername: false });
             return false;
         };
         if (!password) {
-            toast.error('パスワードが必須。');
+            toast.error('パスワードが必須');
             setObjCheckInput({ ...defaultValidInput, isValidPassword: false });
             return false;
         };
         if (password !== confirmPassword) {
-            toast.error('パスワードとパスワード確認の値が一致しません。');
+            toast.error('パスワードとパスワード確認の値が一致しません');
             setObjCheckInput({ ...defaultValidInput, isValidConfirmPassword: false });
             return false;
         };
         if (password.length && confirmPassword.length < 4) {
-            toast.error('パスワードとパスワード確認の長さが 3 文字以上の必要がある。');
+            toast.error('パスワードとパスワード確認の長さが 3 文字以上の必要がある');
             return false;
         };
 

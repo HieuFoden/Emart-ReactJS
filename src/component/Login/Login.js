@@ -46,7 +46,6 @@ const Login = (props) => {
 
             sessionStorage.setItem("account", JSON.stringify(data));
             navigate('/');
-            // window.location.reload();
             toast.success("ログイン成功しました");
         }
 
