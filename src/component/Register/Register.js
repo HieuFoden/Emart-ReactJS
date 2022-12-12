@@ -35,14 +35,21 @@ const Register = (props) => {
 
         if (!email) {
             toast.error('メールが必須');
-            setObjCheckInput({ ...defaultValidInput, isValidEmail: false });
+            setObjCheckInput({ ...defaultValidInput, isValidEmail: false }); //...copy lai gia tri ban dau -> ghi de
             return false;
         };
-        let regx = /\S+@\S+\.\S+/; //js regular expression check email
+        let regEmail = /\S+@\S+\.\S+/; //js regular expression check email
 
-        if (!regx.test(email)) {
+        if (!regEmail.test(email)) {
             toast.error('メールアドレスの形式が正しくありません');
             setObjCheckInput({ ...defaultValidInput, isValidEmail: false });
+            return false;
+        }
+
+        let regPhone = new RegExp("^[0]{1}[0-9]{9}$");
+        if (!regPhone.test(phone)) {
+            toast.error('電話番号の形式が正しくありません');
+            setObjCheckInput({ ...defaultValidInput, isValidPhone: false });
             return false;
         }
 

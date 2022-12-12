@@ -44,7 +44,7 @@ const Login = (props) => {
                 token: 'fake token'
             };
 
-            sessionStorage.setItem("account", JSON.stringify(data));
+            sessionStorage.setItem("account", JSON.stringify(data)); //tham so global key&value
             navigate('/');
             toast.success("ログイン成功しました");
         }
