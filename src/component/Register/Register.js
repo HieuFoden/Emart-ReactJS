@@ -99,6 +99,13 @@ const Register = (props) => {
         };
     };
 
+    const handlePressEnter = (event) => {
+        // console.log(event.charCode, event.code)
+        if (event.charCode === 13 && event.code === 'Enter') {
+            handleRegister();
+        }
+    };
+
     return (
         <div className="register-container">
             <div className="container">   {/* tao khoang trong left-right */}
@@ -138,8 +145,12 @@ const Register = (props) => {
                         </div>
                         <div className='form-group'>
                             <label>パスワード確認：</label>
-                            <input type="password" className={objCheckInput.isValidConfirmPassword ? 'form-control' : 'form-control is-invalid'} placeholder='パスワード確認を入力ください'
-                                value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}
+                            <input type="password"
+                                className={objCheckInput.isValidConfirmPassword ? 'form-control' : 'form-control is-invalid'}
+                                placeholder='パスワード確認を入力ください'
+                                value={confirmPassword}
+                                onChange={(event) => setConfirmPassword(event.target.value)}
+                                onKeyPress={(event) => handlePressEnter(event)}
                             />
                         </div>
                         <button className='btn btn-primary' onClick={() => handleRegister()}>登録</button>

@@ -16,7 +16,6 @@ const Product = (props) => {
         // console.log('>>>res: ', response)
         if (response.EC === 0) {
             setProduct(response.DT);
-            // setFilter(response.DT);
 
         }
     };
