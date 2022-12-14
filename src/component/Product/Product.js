@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchDetailProduct } from "../../service/ApiService";
 import { NavLink } from "react-router-dom";
+import { addItem, delItem } from '../../redux/action/index';
 
 const Product = (props) => {
     const { id } = useParams();
     const [product, setProduct] = useState([]);
+    const [cartBtn, setCartBtn] = useState("カートに入れる");
+
+    const dispatch = useDispatch();
+    const handleCart = (product) => {
+        if (cartBtn === "カートに入れる") {
+            dispatch(addItem(product));
+            setCartBtn("カートに削除する");
+        } else {
+            dispatch(delItem(product));
+            setCartBtn("カートに入れる");
+        }
+
+    };
 
     useEffect(() => {
         getDetailProduct();
@@ -35,7 +50,7 @@ const Product = (props) => {
                         </p>
                         <h3 className="display-6 fw-bold my-4">¥ {product.price}</h3>
                         <p className="lead">{product.description}</p>
-                        <button className="btn btn-outline-dark ms-2">カートに入れる</button>
+                        <button className="btn btn-outline-dark ms-2" onClick={() => handleCart(product)}>{cartBtn}</button>
                         <NavLink to='/cart' className=" btn btn-outline-dark ms-2">カートを見る</NavLink>
                     </div>
                 </div>

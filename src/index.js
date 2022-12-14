@@ -9,34 +9,42 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
+import NotFoundPage from './component/404/NotFoundPage';
 import Home from './component/Home/Home';
 import Cart from './component/Cart/Cart';
 import Product from './component/Product/Product';
 import Users from './component/ManageUsers/Users';
 import About from './component/About/About';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Checkout from './component/Checkout/Checkout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <>
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path='' element={<App />} >
-            <Route index element={<Home />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/product/:id' element={<Product />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/about' element={<About />} />
-          </Route>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+    <Provider store={store}>
+      <React.StrictMode>
+        <BrowserRouter>
+          {/* <Provider store={store}> */}
+          <Routes>
+            <Route path='' element={<App />} >
+              <Route index element={<Home />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/product/:id' element={<Product />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/checkout' element={<Checkout />} />
+              <Route path='*' element={<NotFoundPage />} />
+            </Route>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+          {/* </Provider> */}
+        </BrowserRouter>
 
-        </Routes>
-
-      </BrowserRouter>
-
-    </React.StrictMode>
+      </React.StrictMode>
+    </Provider>
     <ToastContainer
       position="top-center"
       autoClose={5000}
@@ -49,8 +57,8 @@ root.render(
       pauseOnHover
       theme="light"
     />
-    {/* </Provider> */}
   </>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
