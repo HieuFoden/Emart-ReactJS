@@ -22,4 +22,8 @@ const fetchDetailProduct = (id) => {
 
 };
 
-export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct };
+const fetchAllUsers = () => {
+    return axios.get(`api/v1/user/read`);
+};
+
+export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers };

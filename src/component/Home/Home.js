@@ -22,7 +22,7 @@ const Home = () => {
     const fetchListProducts = async () => {
         let response = await fetchAllProducts(currentPage, currentLimit);  //currentPage, currentLimit
         // console.log('>>>res: ', response)
-        if (response.EC === 0) {
+        if (response && response.EC === 0) {
             // setListProduct(response.DT);
             // setFilter(response.DT);
 
@@ -94,8 +94,8 @@ const Home = () => {
 
                                 return (
                                     <>
-                                        <div className="col-md-3 mb-4" key={item.id}>
-                                            <div className="card h-100 text-center p-4">
+                                        <div className="col-md-3 mb-4" key={`${index}`}>
+                                            <div className="card h-100 text-center p-4 ">
                                                 <img src={item.image} className="card-img-top" alt={item.title} height="250px" />
                                                 <div className="card-body">
                                                     <h5 className="card-title mb-0">{item.title.substring(0, 30)}...</h5>
