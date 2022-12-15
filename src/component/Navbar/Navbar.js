@@ -1,11 +1,12 @@
 import React from "react";
+import { NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import './Navbar.scss';
 
 const Navbar = () => {
 
-    const state = useSelector((state) => state.addItem)
+    const state = useSelector((state) => state.handleCart);
 
     return (
         <div>
@@ -54,6 +55,7 @@ const Navbar = () => {
                             <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                                 <i className="fa fa-shopping-cart"> カート({state.length})</i>
                             </NavLink>
+
                         </div>
                     </div>
                 </div>

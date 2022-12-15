@@ -1,15 +1,16 @@
-// Them item vao cart
-export const addItem = (product) => {
+
+// For adding item to the Cart
+export const addCart = (product) => {
     return {
         type: "ADDITEM",
-        payload: product
-    }
+        payload: product,
+    };
 };
 
-// Xoa item khoi cart
-export const delItem = (product) => {
+// For deleting item from the Cart
+export const delCart = (product) => {
     return {
         type: "DELITEM",
-        payload: product
-    }
+        payload: product,
+    };
 };

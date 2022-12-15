@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchDetailProduct } from "../../service/ApiService";
 import { NavLink } from "react-router-dom";
-import { addItem, delItem } from '../../redux/action/index';
+import { addCart, delCart } from '../../redux/action/index';
 
 const Product = (props) => {
     const { id } = useParams();
@@ -13,10 +13,10 @@ const Product = (props) => {
     const dispatch = useDispatch();
     const handleCart = (product) => {
         if (cartBtn === "カートに入れる") {
-            dispatch(addItem(product));
+            dispatch(addCart(product));
             setCartBtn("カートに削除する");
         } else {
-            dispatch(delItem(product));
+            dispatch(delCart(product));
             setCartBtn("カートに入れる");
         }
 

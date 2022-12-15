@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const Checkout = (props) => {
-    const state = useSelector((state) => state.addItem);
+    const state = useSelector((state) => state.handleCart);
     let total = 0;
     const itemList = (item) => {
         total += item.price;
