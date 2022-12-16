@@ -22,8 +22,17 @@ const fetchDetailProduct = (id) => {
 
 };
 
-const fetchAllUsers = () => {
-    return axios.get(`api/v1/user/read`);
+const fetchAllUsers = (page, limit) => {
+    return axios.get(`api/v1/user/read?page=${page}&limit=${limit}`);
 };
 
-export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers };
+const deleteUser = (user) => {
+    return axios.delete('api/v1/user/delete', { data: { id: user.id } });
+    // return axios.delete('api/v1/user/delete', { id: user });
+};
+
+const fetchGroups = () => {
+    return axios.get(`api/v1/group/read`);
+};
+
+export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers, deleteUser, fetchGroups };
