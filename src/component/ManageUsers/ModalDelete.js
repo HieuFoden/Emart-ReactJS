@@ -10,7 +10,7 @@ const ModalDelete = (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>削除確認</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{props.dataModal.username} を削除しますか ?</Modal.Body>
+                <Modal.Body>{props.dataModalDelete.username} を削除しますか ?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>
                         閉じる

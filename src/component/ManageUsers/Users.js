@@ -12,11 +12,15 @@ const Users = (props) => {
 
     const [listUser, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(4);
+    const [currentLimit, setCurrentLimit] = useState(5);
     const [totalPage, setTotalPage] = useState(0);
 
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
-    const [dataModal, setDataModal] = useState({});;
+    const [dataModalDelete, setDataModalDelete] = useState({});;
+
+    const [isShowModalUser, setIsShowModalUser] = useState(false);
+    const [actionModalUser, setActionModalUser] = useState('CREATE');
+    const [dataModalCreateUpdate, setDataModalCreateUpdate] = useState('');
 
     useEffect(() => {
         let session = sessionStorage.getItem('account');
@@ -43,17 +47,17 @@ const Users = (props) => {
     };
 
     const handleDeleteUser = async (user) => {
-        setDataModal(user);
+        setDataModalDelete(user);
         setIsShowModalDelete(true);
     };
 
     const handleClose = () => {
         setIsShowModalDelete(false);
-        setDataModal({});
+        setDataModalDelete({});
     };
 
     const confirmDeleteUser = async () => {
-        let response = await deleteUser(dataModal);
+        let response = await deleteUser(dataModalDelete);
         if (response && response.EC === 0) {
             toast.success(response.EM);
             await fetchUsers();
@@ -61,6 +65,18 @@ const Users = (props) => {
         } else {
             toast.error(response.EM);
         }
+    };
+
+    const onHideModalUser = async () => {
+        setIsShowModalUser(false);
+        setActionModalUser({}); // reset cac truong ve rong
+        await fetchUsers();
+    };
+
+    const handleEditUser = (user) => {
+        setActionModalUser('UPDATE');
+        setDataModalCreateUpdate(user);
+        setIsShowModalUser(true);
     };
     return (
         <>
@@ -72,7 +88,12 @@ const Users = (props) => {
                         </div>
                         <div className="actions">
                             <button className="btn btn-success">リフレッシュ</button>
-                            <button className="btn btn-primary">ユーザー追加</button>
+                            <button className="btn btn-primary"
+                                onClick={() => {
+                                    setIsShowModalUser(true);
+                                    setActionModalUser('CREATE');
+                                }}
+                            >ユーザー追加</button>
                         </div>
                     </div>
                     <div className="user-table">
@@ -93,16 +114,20 @@ const Users = (props) => {
                                         {listUser.map((item, index) => {
                                             return (
                                                 <tr key={`row-${index}`}>
-                                                    <td>{index + 1}</td>
+                                                    <td>{(currentPage - 1) * currentLimit + index + 1}</td>
                                                     <td>{item.id}</td>
                                                     <td>{item.username}</td>
                                                     <td>{item.email}</td>
                                                     <td>{item.Group ? item.Group.name : ''}</td>
                                                     <td>
-                                                        <button className=" btn btn-info mx-3">編集</button>
+                                                        <button className=" btn btn-info mx-3"
+                                                            onClick={() => handleEditUser(item)}
+                                                        >
+                                                            編集</button>
                                                         <button className=" btn btn-danger"
                                                             onClick={() => handleDeleteUser(item)}
-                                                        >削除</button>
+                                                        >
+                                                            削除</button>
                                                     </td>
                                                 </tr>
                                             );
@@ -146,11 +171,14 @@ const Users = (props) => {
                 show={isShowModalDelete}
                 handleClose={handleClose}
                 confirmDeleteUser={confirmDeleteUser}
-                dataModal={dataModal}
+                dataModalDelete={dataModalDelete}
             />
 
             <ModalUser
-                title={"ユーザー作成"}
+                onHide={onHideModalUser}
+                isShowModalUser={isShowModalUser}
+                action={actionModalUser}
+                dataModalCreateUpdate={dataModalCreateUpdate}
             />
         </>
     );

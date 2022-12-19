@@ -35,4 +35,12 @@ const fetchGroups = () => {
     return axios.get(`api/v1/group/read`);
 };
 
-export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers, deleteUser, fetchGroups };
+const createNewUser = (userData) => {
+    return axios.post(`api/v1/user/create`, { ...userData });
+};
+
+const updateCurrentUser = (userData) => {
+    return axios.put(`api/v1/user/update`, { ...userData });
+};
+
+export { fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers, deleteUser, fetchGroups, createNewUser, updateCurrentUser };
