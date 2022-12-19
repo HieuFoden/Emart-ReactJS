@@ -1,7 +1,25 @@
-.modal-user{
-    .content-body{
-        .red{
+.modal-user {
+    .content-body {
+        .red {
             color: red;
         }
+    }
+}
+
+.manage-users-container {
+    .fa-plus-circle:before {
+        padding-right: 7px;
+    }
+
+    .fa-refresh:before {
+        padding-right: 7px;
+    }
+
+    .btn-success {
+        margin-right: 10px;
+    }
+
+    ::before {
+        padding-right: 7px;
     }
 }

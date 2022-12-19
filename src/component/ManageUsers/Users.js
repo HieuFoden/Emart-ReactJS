@@ -78,22 +78,33 @@ const Users = (props) => {
         setDataModalCreateUpdate(user);
         setIsShowModalUser(true);
     };
+
+    const handleRefresh = async () => {
+        await fetchUsers();
+    };
     return (
         <>
             <div className="container">
                 <div className="manage-users-container">
                     <div className="user-header">
-                        <div className="title">
-                            <h3>ユーザー　一覧</h3>
+                        <div className="title mt-3">
+                            <h3>ユーザー管理</h3>
                         </div>
-                        <div className="actions">
-                            <button className="btn btn-success">リフレッシュ</button>
+                        <div className="actions my-3">
+                            <button
+                                className="refresh btn btn-success"
+                                onClick={() => handleRefresh()}
+                            >
+                                <i className="fa fa-refresh">リフレッシュ</i>
+                            </button>
                             <button className="btn btn-primary"
                                 onClick={() => {
                                     setIsShowModalUser(true);
                                     setActionModalUser('CREATE');
                                 }}
-                            >ユーザー追加</button>
+                            >
+                                <i className="fa fa-plus-circle">ユーザー追加</i>
+                            </button>
                         </div>
                     </div>
                     <div className="user-table">
@@ -123,11 +134,13 @@ const Users = (props) => {
                                                         <button className=" btn btn-info mx-3"
                                                             onClick={() => handleEditUser(item)}
                                                         >
-                                                            編集</button>
+                                                            <i className="fa fa-pencil">編集</i>
+                                                        </button>
                                                         <button className=" btn btn-danger"
                                                             onClick={() => handleDeleteUser(item)}
                                                         >
-                                                            削除</button>
+                                                            <i className="fa fa-trash">削除</i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             );

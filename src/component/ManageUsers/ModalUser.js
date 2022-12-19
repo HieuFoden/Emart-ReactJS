@@ -100,7 +100,7 @@ const ModalUser = (props) => {
             if (response.EC === 0) {
                 props.onHide();
                 action === 'CREATE' ? toast.success('追加は成功です') : toast.success('編集は成功です');
-                setUserData({ ...defaultUserData, group: userGroups[0].id })
+                setUserData({ ...defaultUserData, group: userGroups[0].id });
             }
             if (response.EC !== 0) {
                 toast.error(response.EM);
