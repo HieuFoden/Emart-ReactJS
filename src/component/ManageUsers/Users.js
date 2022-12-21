@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchAllUsers, deleteUser } from '../../service/ApiService';
 import ReactPaginate from "react-paginate";
@@ -34,6 +34,7 @@ const Users = (props) => {
     }, [currentPage]);
 
     const fetchUsers = async (page) => {
+
         let response = await fetchAllUsers(currentPage, currentLimit);
         if (response && response.EC === 0) {
             // setListUser(response.DT);

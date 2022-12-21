@@ -18,6 +18,7 @@ import About from './component/About/About';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Checkout from './component/Checkout/Checkout';
+import { UserProvider } from './context/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,24 +26,25 @@ root.render(
   <>
     <Provider store={store}>
       <React.StrictMode>
-        <BrowserRouter>
-          {/* <Provider store={store}> */}
-          <Routes>
-            <Route path='' element={<App />} >
-              <Route index element={<Home />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/product/:id' element={<Product />} />
-              <Route path='/users' element={<Users />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/checkout' element={<Checkout />} />
-              <Route path='*' element={<NotFoundPage />} />
-            </Route>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </Routes>
-          {/* </Provider> */}
-        </BrowserRouter>
-
+        <UserProvider>
+          <BrowserRouter>
+            {/* <Provider store={store}> */}
+            <Routes>
+              <Route path='' element={<App />} >
+                <Route index element={<Home />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/product/:id' element={<Product />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/checkout' element={<Checkout />} />
+                <Route path='*' element={<NotFoundPage />} />
+              </Route>
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
+            {/* </Provider> */}
+          </BrowserRouter>
+        </UserProvider>
       </React.StrictMode>
     </Provider>
     <ToastContainer
