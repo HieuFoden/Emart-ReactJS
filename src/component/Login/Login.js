@@ -1,12 +1,14 @@
 import './Login.scss';
 // import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
-
+import { UserContext } from '../../context/UserContext';
 import { loginUser } from '../../service/ApiService';
 
 const Login = (props) => {
+    const { loginContext } = useContext(UserContext);
+
     // let history = useHistory();
     let navigate = useNavigate();
     const [valueLogin, setValueLogin] = useState('');
@@ -39,12 +41,17 @@ const Login = (props) => {
         let response = await loginUser(valueLogin, password);
         if (response && +response.EC === 0) {
             //success
+            let groupWithRoles = response.DT.groupWithRoles;
+            let email = response.DT.email;
+            let username = response.DT.username;
+            let token = response.DT.access_token
             let data = {
                 isAuthenticated: true, //xac thuc duoc nguoi dung hay chua
-                token: 'fake token'
+                token,
+                account: { groupWithRoles, email, username }
             };
 
-            sessionStorage.setItem("account", JSON.stringify(data)); //tham so global key&value
+            loginContext(data);
             navigate('/');
             toast.success("ログイン成功しました");
         }

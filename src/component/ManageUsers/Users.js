@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchAllUsers, deleteUser } from '../../service/ApiService';
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
@@ -8,7 +7,6 @@ import ModalUser from "./ModalUser";
 import './Users.scss';
 
 const Users = (props) => {
-    let navigate = useNavigate();
 
     const [listUser, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,13 +19,6 @@ const Users = (props) => {
     const [isShowModalUser, setIsShowModalUser] = useState(false);
     const [actionModalUser, setActionModalUser] = useState('CREATE');
     const [dataModalCreateUpdate, setDataModalCreateUpdate] = useState('');
-
-    useEffect(() => {
-        let session = sessionStorage.getItem('account');
-        if (!session) {
-            navigate('/login');
-        }
-    }, []);
 
     useEffect(() => {
         fetchUsers();

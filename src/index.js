@@ -1,24 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
-import Login from './component/Login/Login';
-import Register from './component/Register/Register';
-import NotFoundPage from './component/404/NotFoundPage';
-import Home from './component/Home/Home';
-import Cart from './component/Cart/Cart';
-import Product from './component/Product/Product';
-import Users from './component/ManageUsers/Users';
-import About from './component/About/About';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Checkout from './component/Checkout/Checkout';
 import { UserProvider } from './context/UserContext';
+import AppRoutes from './routes/AppRoutes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -28,21 +19,7 @@ root.render(
       <React.StrictMode>
         <UserProvider>
           <BrowserRouter>
-            {/* <Provider store={store}> */}
-            <Routes>
-              <Route path='' element={<App />} >
-                <Route index element={<Home />} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path='/product/:id' element={<Product />} />
-                <Route path='/users' element={<Users />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/checkout' element={<Checkout />} />
-                <Route path='*' element={<NotFoundPage />} />
-              </Route>
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </Routes>
-            {/* </Provider> */}
+            <AppRoutes />
           </BrowserRouter>
         </UserProvider>
       </React.StrictMode>
