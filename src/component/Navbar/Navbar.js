@@ -46,16 +46,29 @@ const Navbar = () => {
 
 
                         <div className="buttons">
-                            <NavLink to="/login" className="btn btn-outline-dark">
+                            {/* <NavLink to="/login" className="btn btn-outline-dark">
                                 <i className="fa fa-sign-in me-1"> ログイン</i>
                             </NavLink>
                             <NavLink to="/register" className="btn btn-outline-dark ms-2">
                                 <i className="fa fa-user-plus"> 登録</i>
-                            </NavLink>
+                            </NavLink> */}
                             <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                                 <i className="fa fa-shopping-cart"> カート({state.length})</i>
                             </NavLink>
+                        </div>
 
+                        <div className="drop-down">
+                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">
+                                    Another action
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action/3.4">
+                                    Separated link
+                                </NavDropdown.Item>
+                            </NavDropdown>
                         </div>
                     </div>
                 </div>
