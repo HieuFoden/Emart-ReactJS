@@ -47,7 +47,14 @@ const getUserAccount = () => {
     return axios.get(`api/v1/account`);
 };
 
+const logoutUser = () => {
+    return axios.post(`api/v1/logout`);
+};
+
+const createRole = (roles) => {
+    return axios.post(`api/v1/role/create`, [...roles]);
+};
 export {
     fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers, deleteUser,
-    fetchGroups, createNewUser, updateCurrentUser, getUserAccount
+    fetchGroups, createNewUser, updateCurrentUser, getUserAccount, logoutUser, createRole
 };

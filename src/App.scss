@@ -1,13 +1,4 @@
- 
-.loading-container{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   }
- 
- .app-container{
+.app-container{
     .header-container{
        .navbar-nav {
         .nav-link{
@@ -19,4 +10,12 @@
     }
  }
 
- 
+ .loading-container{
+   div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    }
+   }

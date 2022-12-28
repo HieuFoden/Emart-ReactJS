@@ -33,7 +33,8 @@ function App() {
             {/* <Home /> */}
             <Outlet />
           </div>
-        </div>}
+        </div>
+      }
     </>
   );
 }
