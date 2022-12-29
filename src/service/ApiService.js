@@ -28,7 +28,6 @@ const fetchAllUsers = (page, limit) => {
 
 const deleteUser = (user) => {
     return axios.delete('api/v1/user/delete', { data: { id: user.id } });
-    // return axios.delete('api/v1/user/delete', { id: user });
 };
 
 const fetchGroups = () => {
@@ -54,7 +53,25 @@ const logoutUser = () => {
 const createRole = (roles) => {
     return axios.post(`api/v1/role/create`, [...roles]);
 };
+
+const fetchAllRoles = () => {
+    return axios.get(`api/v1/role/read`);
+};
+
+const deleteRole = (role) => {
+    return axios.delete('api/v1/role/delete', { data: { id: role.id } });
+};
+
+const fetchRolesByGroup = (groupId) => {
+    return axios.get(`api/v1/role/by-group/${groupId}`);
+};
+
+const assignRoleToGroup = (data) => {
+    return axios.post(`api/v1/role/assign-to-group`, { data });
+};
+
 export {
     fetchAllProducts, registerNewUser, loginUser, fetchDetailProduct, fetchAllUsers, deleteUser,
-    fetchGroups, createNewUser, updateCurrentUser, getUserAccount, logoutUser, createRole
+    fetchGroups, createNewUser, updateCurrentUser, getUserAccount, logoutUser, createRole, fetchAllRoles,
+    deleteRole, fetchRolesByGroup, assignRoleToGroup
 };

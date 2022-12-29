@@ -49,9 +49,6 @@ const Navbar = () => {
                             </li>
                             {user && user.isAuthenticated === true &&
                                 <li className="nav-item">
-                                    {/* <NavLink className="nav-link" to="/users">
-                                    ユーザー管理
-                                </NavLink> */}
 
                                     <NavDropdown title="ユーザー管理" id="basic-nav-dropdown">
                                         <NavLink className="nav-link" to="/users">
@@ -59,10 +56,12 @@ const Navbar = () => {
                                         </NavLink>
                                         <NavDropdown.Divider />
                                         <NavLink className="nav-link" to="/roles">
-                                            役割
+                                            権限
                                         </NavLink>
                                         <NavDropdown.Divider />
-
+                                        <NavLink className="nav-link" to="/groups-roles">
+                                            グループ & 権限
+                                        </NavLink>
                                     </NavDropdown>
                                 </li>
                             }

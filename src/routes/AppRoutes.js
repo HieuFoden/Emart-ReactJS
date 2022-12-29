@@ -11,6 +11,7 @@ import About from '../component/About/About';
 import Checkout from '../component/Checkout/Checkout';
 import PrivateRoutes from "./PrivateRoutes";
 import Role from "../component/Role/Role";
+import GroupRole from "../component/GroupRole/GroupRole";
 const AppRoutes = (props) => {
     return (
         <>
@@ -19,9 +20,9 @@ const AppRoutes = (props) => {
                     <Route index element={<Home />} />
                     <Route path='/cart' element={<Cart />} />
                     <Route path='/product/:id' element={<Product />} />
-                    {/* <Route path='/users' element={<Users />} /> */}
                     <Route path="/users" element={<PrivateRoutes><Users /></PrivateRoutes>} />
                     <Route path="/roles" element={<PrivateRoutes><Role /></PrivateRoutes>} />
+                    <Route path="/groups-roles" element={<PrivateRoutes><GroupRole /></PrivateRoutes>} />
                     <Route path='/about' element={<About />} />
                     <Route path='/checkout' element={<Checkout />} />
                     <Route path='*' element={<NotFoundPage />} />

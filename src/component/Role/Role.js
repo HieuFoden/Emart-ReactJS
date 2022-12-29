@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './Role.scss';
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
 import { createRole } from '../../service/ApiService';
+import TableRole from './TableRole';
 
 const Role = (props) => {
+    const childRef = useRef();
     const dataChildDefault = {
         url: '',
         description: '',
@@ -58,6 +60,7 @@ const Role = (props) => {
             let res = await createRole(data);
             if (res && res.EC === 0) {
                 toast.success(res.EM);
+                childRef.current.fetchListRolesAgain();
             } else {
                 toast.error(res.EM);
             }
@@ -74,7 +77,7 @@ const Role = (props) => {
     return (
         <div className='role-container'>
             <div className='container'>
-                <div className='mt-3'>
+                <div className='adding-roles mt-3'>
                     <div className='title-role'>
                         <h4>役割追加</h4>
                     </div>
@@ -115,6 +118,11 @@ const Role = (props) => {
                             <button className='btn btn-primary mt-3' onClick={() => handleSave()}>保存</button>
                         </div>
                     </div>
+                </div>
+                <hr />
+                <div className='mt-3 table-role'>
+                    <h4>現在権限一覧</h4>
+                    <TableRole ref={childRef} />
                 </div>
             </div>
         </div>

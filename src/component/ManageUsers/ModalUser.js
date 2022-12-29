@@ -182,7 +182,7 @@ const ModalUser = (props) => {
                                 onChange={(event) => handleOnchangeInput(event.target.value, 'sex')}
                                 value={userData.sex}
                             >
-                                <option>性別選んでください</option>
+                                <option value=''>性別選んでください</option>
                                 <option value='男'>男</option>
                                 <option value='女'>女</option>
                                 <option value='その他'>その他</option>
