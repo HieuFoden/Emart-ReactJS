@@ -32,17 +32,6 @@ const GroupRole = (props) => {
         }
     };
 
-    const handleOnchangeSelect = async (value) => {
-        setSelectGroup(value);
-        if (value) {
-            let data = await fetchRolesByGroup(value);
-            if (data && +data.EC === 0) {
-                let result = buildDataRolesByGroup(data.DT.Roles, listRoles);
-                setAssignRolesByGroup(result);
-            }
-        }
-    };
-
     const buildDataRolesByGroup = (groupRoles, allRoles) => {
         let result = [];
         if (allRoles && allRoles.length > 0) {
@@ -59,6 +48,17 @@ const GroupRole = (props) => {
             });
         }
         return result;
+    };
+
+    const handleOnchangeSelect = async (value) => {
+        setSelectGroup(value);
+        if (value) {
+            let data = await fetchRolesByGroup(value);
+            if (data && +data.EC === 0) {
+                let result = buildDataRolesByGroup(data.DT.Roles, listRoles);
+                setAssignRolesByGroup(result);
+            }
+        }
     };
 
     const handleSelectRole = (value) => {

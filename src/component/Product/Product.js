@@ -28,10 +28,8 @@ const Product = (props) => {
 
     const getDetailProduct = async () => {
         let response = await fetchDetailProduct(id);
-        // console.log('>>>res: ', response)
         if (response.EC === 0) {
             setProduct(response.DT);
-
         }
     };
 

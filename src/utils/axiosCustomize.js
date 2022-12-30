@@ -43,7 +43,11 @@ instance.interceptors.response.use(function (response) {
     switch (status) {
         // authentication (token related issues)
         case 401: {
-            toast.error('無認証');
+            if (window.location.pathname !== '/'
+                && window.location.pathname !== '/login'
+                && window.location.pathname !== '/register') {
+                toast.error('無認証');
+            }
             return err.response.data;
         }
 

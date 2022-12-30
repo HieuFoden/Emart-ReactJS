@@ -1,5 +1,5 @@
 import './Login.scss';
-// import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext';
 import { loginUser } from '../../service/ApiService';
 
 const Login = (props) => {
-    const { loginContext } = useContext(UserContext);
+    const { user, loginContext } = useContext(UserContext);
 
     // let history = useHistory();
     let navigate = useNavigate();
@@ -71,13 +71,19 @@ const Login = (props) => {
         }
     };
 
+    useEffect(() => {
+        if (user && user.isAuthenticated) {
+            navigate('/');
+        }
+    }, [user])
+
     return (
         <div className="login-container">
             <div className="container">   {/* tao khoang trong left-right */}
                 <div className="row">
                     <div className="content-left col-7">
                         <div className='brand'>
-                            Aki Shop
+                            <Link to='/'><span title='Return to homepage'>Aki Shop</span></Link>
                         </div>
                         <div className='detail'>
                             Welcome. 本日,何を着ますか？
@@ -104,8 +110,13 @@ const Login = (props) => {
                         <hr />
                         <div className='text-center'>
                             <button className='btn btn-success' onClick={() => handleCreateNewAccount()}>新規アカウント登録</button>
+                            <div className='mt-3 return'>
+                                <Link to='/'>
+                                    <i className='fa fa-arrow-circle-left'></i>
+                                    <span title='Return to homepage'>ホームページに戻る</span>
+                                </Link>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>

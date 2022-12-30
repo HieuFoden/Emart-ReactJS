@@ -1,11 +1,14 @@
 import './Register.scss';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { registerNewUser } from '../../service/ApiService';
+import { UserContext } from '../../context/UserContext';
 
 
 const Register = (props) => {
+    const { user } = useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [username, setUsername] = useState("");
@@ -26,9 +29,10 @@ const Register = (props) => {
     }
 
     useEffect(() => {
-
-
-    }, []);
+        if (user && user.isAuthenticated) {
+            navigate('/');
+        }
+    }, [user]);
 
     const isValidInputs = () => {
         setObjCheckInput(defaultValidInput);
@@ -112,7 +116,7 @@ const Register = (props) => {
                 <div className="row">
                     <div className="content-left col-7">
                         <div className='brand'>
-                            Aki Shop
+                            <Link to='/'><span title='Return to homepage'>Aki Shop</span></Link>
                         </div>
                         <div className='detail'>
                             Welcome. 本日,何を着ますか？
@@ -157,6 +161,12 @@ const Register = (props) => {
                         <hr />
                         <div className='text-center'>
                             <button className='btn btn-success' onClick={() => handleLogin()}>ログイン</button>
+                            <div className='mt-3 return'>
+                                <Link to='/'>
+                                    <i className='fa fa-arrow-circle-left'></i>
+                                    <span title='Return to homepage'>ホームページに戻る</span>
+                                </Link>
+                            </div>
                         </div>
 
                     </div>

@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       {user && user.isLoading ?
-        <div classname='loading-container'>
+        <div className='loading-container'>
           <TailSpin
             height="80"
             width="80"
@@ -30,13 +30,12 @@ function App() {
             <Navbar />
           </div>
           <div className='main-container'>
-            {/* <Home /> */}
             <Outlet />
           </div>
         </div>
       }
     </>
   );
-}
+};
 
 export default App;
